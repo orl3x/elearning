@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amdocs.project.interfaceService.IUserService;
+import com.amdocs.project.model.Feedback;
 import com.amdocs.project.model.User;
 
 @Controller
@@ -23,22 +24,32 @@ import com.amdocs.project.model.User;
 public class Control {
 	//CONTROL CURRENTLY LOGGED USER
 	public static User loggedUser = new User();
-
+	public static boolean canNavigate = false;
+	
 	@Autowired
 	private IUserService service;
 	
 	@GetMapping("/user")
 	public String list(Model model) {
+		if(!canNavigate) {
+			return "requireLogin";
+		}else {
 		List<User> users = service.listUser();
 		model.addAttribute("users",users);
-		return "userList";
+		return "userList";	
+		}
+		
 	}
 	
 	@GetMapping("/byid/{id}")
 	public String findById(@PathVariable int id, Model model) {
+	if(!canNavigate) {
+		return "requireLogin";
+	}else {
 	Optional<User> user = service.listId(id);
 	model.addAttribute("users",user.get());
 	return "userbyid";
+	}
 		
 	}
 	
@@ -71,13 +82,17 @@ public class Control {
 		for(User user:users) {
 			if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
 				loggedUser.setId(user.getId());
+				loggedUser.setName(user.getName());
+				loggedUser.setEmail(user.getEmail());
+				loggedUser.setAddress(user.getAddress());
+				loggedUser.setPhone(user.getPhone());
+				canNavigate = true;
 				return "hello";
 			}
 		}
 		return "redirect:/login-screen-failure";
 	
-	}
-	
+	}	
 	
 
 	@PostMapping("/save-user")
@@ -89,5 +104,21 @@ public class Control {
 		service.saveUser(u);
 		return "redirect:/login-screen"; 
 	}
+	
+	
+	
+	public String addFeedback(Model model) {
+		model.addAttribute("feedback", new Feedback());
+		return "addFeedback";
+	}
+	
+	@PostMapping("/save-feedback")
+	public String saveFeedback(Feedback f) {
+		
+		return "feedbackList";
+	}
+	
+	
+
 	
 }
