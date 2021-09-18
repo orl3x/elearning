@@ -29,9 +29,13 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public int save(User u) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int saveUser(User u) {
+		int res = 0;
+		User user = data.save(u);
+		if(!user.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 
 	@Override

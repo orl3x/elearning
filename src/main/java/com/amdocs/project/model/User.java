@@ -44,6 +44,8 @@ public class User {
 		this.password = password;
 		this.upload_photo = upload_photo;
 	}
+	
+	
 
 
 
