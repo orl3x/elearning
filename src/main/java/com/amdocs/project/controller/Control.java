@@ -21,6 +21,8 @@ import com.amdocs.project.model.User;
 @Controller
 @RequestMapping
 public class Control {
+	//CONTROL CURRENTLY LOGGED USER
+	public static User loggedUser = new User();
 
 	@Autowired
 	private IUserService service;
@@ -45,15 +47,47 @@ public class Control {
 		model.addAttribute("user", new User());
 		return "registerUser";
 	}
+	
+	@GetMapping("/login-screen")
+	public String loginScreen(Model model) {
+		model.addAttribute("user", new User());
+		return "loginScreen";
+	}
+	
+	@GetMapping("/login-screen-failure")
+	public String loginScreenFailure(Model model) {
+		model.addAttribute("user", new User());
+		return "loginScreenFail";
+	}
+	
+	@PostMapping("validate-login")
+	public String validateLogin(User u) {
+		String email = u.getEmail();
+		//System.out.println(email);
+	    String password = u.getPassword();
+		//System.out.println(password);
+		
+		List<User> users = service.listUser();
+		for(User user:users) {
+			if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
+				loggedUser.setId(user.getId());
+				return "hello";
+			}
+		}
+		return "redirect:/login-screen-failure";
+	
+	}
+	
+	
 
 	@PostMapping("/save-user")
-	public String saveUser(User u, Model model) {
+	public String saveUser(User u) {
 		//GET CURRENT TIMESTAMP
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		u.setDate(formatter.format(date));
 		service.saveUser(u);
-		return "redirect:/user"; 
+		return "redirect:/login-screen"; 
 	}
 	
 }
