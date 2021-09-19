@@ -10,7 +10,9 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
+<div class="container">
+	<h1 class="display-1 text-center">E Learning</h1>
+	<p class="lead text-center mb-5">The online education platform</p>
 	<div class="container mt-4">
 		<div class="col-sm-6 mx-auto">
 			<form th:action="@{/validate-login}" th:object="${user}" method="POST">
@@ -36,8 +38,8 @@
 
 					</div>
 					<div class="card-footer">
-					<input type="submit" class="btn btn-primary" value="Sign In">
-					<span class="mx-auto">Don't have an account? <a th:href="@{/register}">Sign up now!</a></span>
+					<input type="submit" class="btn btn-primary text-center" value="Sign In">
+					<span>&nbsp;&nbsp;Don't have an account? &nbsp;<a th:href="@{/register}">Sign up now!</a></span>
 					</div>
 				</div>
 			</form>
@@ -47,6 +49,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 		crossorigin="anonymous"></script>
-
+</div>
 </body>
 </html>
