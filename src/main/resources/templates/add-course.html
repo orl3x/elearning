@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Users List</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container mt-4">
+		<div class="col-sm-6 mx-auto">
+			<form th:action="@{/save-course}" th:object="${course}" method="POST">
+				<div class="card">
+					<div class="card-header">
+						<h2>Add new course</h2>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+
+							<div class="form-floating mb-3">
+								<input th:field="*{name}" type="text" class="form-control"
+									id="name" placeholder="Name"> <label
+									for="floatingInput">Course Name</label>
+							</div>
+
+							<div class="form-floating mb-3">
+								<input th:field="*{description}" type="text"
+									class="form-control" id="email" placeholder="Course Description"> <label
+									for="floatingInput">Course Description</label>
+							</div>
+
+							<div class="form-floating mb-3">
+								<input th:field="*{resource}" type="text" class="form-control"
+									id="password" placeholder="Course Resources"> <label
+									for="floatingInput">Course Resources</label>
+							</div>
+
+							<div class="form-floating mb-3">
+								<input th:field="*{fees}" type="text" class="form-control"
+									id="password" placeholder="Course Fees"> <label
+									for="floatingInput">Course Fees</label>
+							</div>
+
+
+						</div>
+
+
+					</div>
+					<div class="card-footer">
+						<input type="submit" class="btn btn-success" value="Add Course">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

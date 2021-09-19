@@ -3,11 +3,10 @@ package com.amdocs.project.interfaces;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.amdocs.project.model.FB;
-import com.amdocs.project.model.User;
 
+import com.amdocs.project.model.Course;
 
 @Repository
-public interface IFeedback extends CrudRepository<FB, Integer>{
+public interface ICourse extends CrudRepository<Course, Integer>{
 
 }

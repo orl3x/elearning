@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amdocs.project.interfaceService.IUserService;
-import com.amdocs.project.model.Feedback;
+import com.amdocs.project.model.FB;
 import com.amdocs.project.model.User;
 
 @Controller
@@ -47,7 +47,7 @@ public class Control {
 		return "requireLogin";
 	}else {
 	Optional<User> user = service.listId(id);
-	model.addAttribute("users",user.get());
+	model.addAttribute("user",user.get());
 	return "userbyid";
 	}
 		
@@ -86,8 +86,9 @@ public class Control {
 				loggedUser.setEmail(user.getEmail());
 				loggedUser.setAddress(user.getAddress());
 				loggedUser.setPhone(user.getPhone());
+				loggedUser.setPassword(user.getPassword());
 				canNavigate = true;
-				return "hello";
+				return "redirect:/home";
 			}
 		}
 		return "redirect:/login-screen-failure";
@@ -105,18 +106,11 @@ public class Control {
 		return "redirect:/login-screen"; 
 	}
 	
+
 	
 	
-	public String addFeedback(Model model) {
-		model.addAttribute("feedback", new Feedback());
-		return "addFeedback";
-	}
 	
-	@PostMapping("/save-feedback")
-	public String saveFeedback(Feedback f) {
-		
-		return "feedbackList";
-	}
+
 	
 	
 

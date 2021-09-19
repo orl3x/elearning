@@ -1,17 +1,17 @@
 package com.amdocs.project.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Primary;
 
 
 @Entity
 @Table(name="feedback")
-public class Feedback {
+public class FB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +25,9 @@ public class Feedback {
 	
 	private String feedback;
 	
-	public Feedback(){}
+	public FB(){}
 
-	public Feedback(int f_id, int user_id, String name, String email, String feedback) {
+	public FB(int f_id, int user_id, String name, String email, String feedback) {
 		super();
 		this.f_id = f_id;
 		this.user_id = user_id;
