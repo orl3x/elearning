@@ -15,7 +15,7 @@ public class EnrolledCourses {
 	
 	@Id
 	@Column(name="course_id")
-	private int courseId;
+	private Integer courseId;
 	
 	public EnrolledCourses() {
 		
@@ -35,11 +35,11 @@ public class EnrolledCourses {
 		this.userId = userId;
 	}
 
-	public int getCourseId() {
+	public Integer getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(int courseId) {
+	public void setCourseId(Integer courseId) {
 		this.courseId = courseId;
 	}
 	

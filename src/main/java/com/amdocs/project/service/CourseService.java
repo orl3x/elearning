@@ -41,6 +41,7 @@ public class CourseService implements ICourseService{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
+		data.deleteById(id);
 		
 	}
 

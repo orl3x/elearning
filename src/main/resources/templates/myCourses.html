@@ -28,39 +28,14 @@
 	</nav>
 
 <div class="container mt-4">
-	<div class="row">
-	<div class="col-sm-6 mx-auto">
-			<form th:action="@{/enroll}" th:object="${enrolledCourse}" method="POST">
-				<div class="card">
-					<div class="card-header"> <h2>Enroll in course</h2></div>
-					<div class="card-body">
-						<div class="form-group">
-							
-							<div class="form-floating mb-3">
-								<input th:field="*{courseId}" type="text" class="form-control" id="id"
-								placeholder="Course ID" value=""> <label
-									for="floatingInput">Course ID</label>
-							</div>
-							
-							
-						</div>
-
-
-					</div>
-					<div class="card-footer">
-					<input type="submit" class="btn btn-success" value="Enroll now!">
-					</div>
-				</div>
-			</form>
-		</div>
-	<div class="col-sm-6">
 	<table class="table">
 		<thead>
 		<tr>
-		<th>ID</th>
+		<th>Course ID</th>
 		<th>Name</th>
 		<th>Description</th>
-		<th>fees</th>
+		<th>Fees</th>
+		<th>Resource</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -69,12 +44,10 @@
 		<td th:text="${course.name}"></td>
 		<td th:text="${course.description}"></td>
 		<td th:text="${course.fees}"></td>
+		<td th:text="${course.resource}"></td>
 		</tr>
 		</tbody>
 	</table>
-	</div>
-	</div>
-	
 </div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 		crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="mx-5">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" th:href="@{/home}">E Learning</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -27,19 +27,16 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/add-feedback}">Add feedback</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">My Courses</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/mycourses}">My Courses</a></li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a>
-				</li>
 			</ul>
 		</div>
 	</nav>
 	<h1>
 		Welcome back, <span th:text="${user.name}"></span>
 	</h1>
-	<a class="btn btn-success" th:href="@{/add-feedback}">Add feedback</a>
-	<div class="container mt-4">
-		<div class="col-sm-6 mx-auto"></div>
-	</div>
+
+
 
 
 </body>

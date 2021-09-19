@@ -15,7 +15,7 @@
 		<div class="col-sm-6 mx-auto">
 			<form th:action="@{/save-user}" th:object="${user}" method="POST">
 				<div class="card">
-					<div class="card-header"> <h2>Add new User</h2></div>
+					<div class="card-header"> <h2>Create Account</h2></div>
 					<div class="card-body">
 						<div class="form-group">
 
@@ -49,10 +49,11 @@
 									for="floatingInput">Address</label>
 							</div>
 							
-							<div class="form-floating mb-3">
-								<input th:field="*{photo}" type="text" class="form-control" id="photo"
-								placeholder="Upload Photo"> <label
-									for="floatingInput">Upload Photo</label>
+							<div class="form-group mb-3">
+							<label
+									for="photo">Upload Photo</label>
+								<input th:field="*{photo}" type="file" class="form-control" id="photo"
+								placeholder="Upload Photo"> 
 							</div>
 							
 							
@@ -63,7 +64,7 @@
 					</div>
 					<div class="card-footer">
 					<input type="submit" class="btn btn-success" value="Register">
-					<p class="text-end d-inline">Already have an account? <a th:href="@{/login-screen}">Sign in!</a></p>
+					<p class="text-end d-inline">Already have an account? <a th:href="@{/}">Sign in!</a></p>
 					</div>
 				</div>
 			</form>

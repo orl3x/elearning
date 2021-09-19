@@ -59,8 +59,11 @@ public class Control {
 		return "registerUser";
 	}
 	
-	@GetMapping("/login-screen")
+	@GetMapping("/")
 	public String loginScreen(Model model) {
+		if(canNavigate) {
+			return "redirect:/home";
+		}
 		model.addAttribute("user", new User());
 		return "loginScreen";
 	}
@@ -103,7 +106,7 @@ public class Control {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		u.setDate(formatter.format(date));
 		service.saveUser(u);
-		return "redirect:/login-screen"; 
+		return "redirect:/"; 
 	}
 	
 

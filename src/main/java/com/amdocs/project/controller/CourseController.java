@@ -1,11 +1,13 @@
 package com.amdocs.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,7 @@ import com.amdocs.project.interfaceService.IEnrolledCoursesService;
 import com.amdocs.project.model.Course;
 import com.amdocs.project.model.EnrolledCourses;
 import com.amdocs.project.model.User;
+import com.amdocs.project.service.CourseService;
 import com.amdocs.project.service.EnrolledCourseService;
 
 @Controller
@@ -57,7 +60,6 @@ public class CourseController {
 		
 		
 		EnrolledCourses e = new EnrolledCourses();
-		e.setCourseId(7);
 		model.addAttribute("enrolledCourse", e);
 		model.addAttribute("courses", courseList);
 		return "enroll-course";
@@ -73,4 +75,41 @@ public class CourseController {
 	
 	return "redirect:/enroll-course";
 	}
+	
+	@GetMapping("/mycourses")
+	public String listMyCourses(Model model) {
+		List<Course> myCourses = new ArrayList<Course>();
+		List<EnrolledCourses> myEnrolledCourses = enrolledCourseService.listEnrolledCourses();
+		
+		for(EnrolledCourses ec : myEnrolledCourses) {
+			if(ec.getUserId() == Control.loggedUser.getId()) {
+				myCourses.add((Course) service.listId(ec.getCourseId()).get());
+				System.out.println("Added course");
+			}
+		}
+		
+		model.addAttribute("courses", myCourses);
+		
+		return "myCourses";
+	}
+	
+	@GetMapping("/all-courses")
+	public String getAllCourses(Model model) {
+		model.addAttribute("courses",service.listCourse());
+		return "allCourses";
+	}
+	
+	@GetMapping("/delete-course/{id}")
+	public String deleteCourse(@PathVariable int id) {
+		service.delete(id);
+		System.out.println("Deleted one course");
+		return "redirect:/all-courses";
+	}
+	
+	
+	
+	
+	
+	
+	
 }
